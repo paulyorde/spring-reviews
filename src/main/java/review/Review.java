@@ -1,14 +1,10 @@
 package review;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -20,26 +16,22 @@ public class Review {
 	private String imageUrl;
 	private String content;
 	
-	@OneToMany(mappedBy = "review", fetch = FetchType.EAGER)
-	private Collection<Category> categories;
+	@ManyToOne
+	private Category category;
 	
 	protected Review() {}
-	
-	public Review(String title, String imageUrl, String content) {
-		this(title, imageUrl, content, Collections.emptyList());
-	}
-	
-	public Review(String title, String img, String content, Collection<Category> categories)  {
+
+	public Review(String title, String img, String content, Category category)  {
 		this.title = title;
 		this.imageUrl = img;
 		this.content = content;
-		this.categories = categories;
+		this.category = category;
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("Review[id=%d, title='%s', content='%s', categories: %s]", id, title, content,
-				categories);
+		return String.format("Review[title='%s', content='%s', categories: %s]",  title, content,
+				category.getTitle());
 	}
 
 	public long getId() {
@@ -58,10 +50,12 @@ public class Review {
 		return content;
 	}
 	
-	public Collection<Category> getCategories() {
-		return categories;
+	public Category getCategory() {
+		return category;
 	}
 	
-	
-	
+	public Long getCategoryID() {
+		return category.getId();
+	}
+
 }
