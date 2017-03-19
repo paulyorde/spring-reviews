@@ -73,7 +73,7 @@
                        <p class="card-text" th:text="${review.content}"></p>
                    </div>
                    <div class="card-footer text-muted">
-                       from <spoan th:text="${review.category}" />  | Posted on 
+                       from <spoan th:text="${review.category.title}" />  | Posted on 
                    </div>
                </div>
                   
@@ -88,10 +88,8 @@
                        <div class="card-block">
                            <div class="row">
                                <div class="col-lg-6">
-                                   <ul class="list-unstyled mb-0">
-                                       <li><a th:href="@{/showReviews}">modern sci-fi</a></li>
-                                       <li><a th:href="@{/showTechReviews}">techFYI</a></li>
-                                       <li><a th:href="@{/showRocketReviews}">rockets</a></li>
+                                   <ul class="list-unstyled mb-0" th:each="category: ${categories}">
+                                      <li><a th:href="@{http://localhost:8080/showCategory(id=${category.id})}"><span th:text="${category.title}"></span></a></li>
                                    </ul>
                                </div>
                            </div>

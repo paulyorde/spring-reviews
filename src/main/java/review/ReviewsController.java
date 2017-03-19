@@ -26,6 +26,7 @@ public class ReviewsController {
 	@RequestMapping("/showReview")
     public String showReview(@RequestParam(value="id", required=true)Long id, Model model) {
 		model.addAttribute("review", reviews.findOne(id));
+		model.addAttribute("categories", categories.findAll());
 		model.addAttribute("category", categories.findOne(id));
         return "review";
     }

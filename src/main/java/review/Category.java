@@ -16,6 +16,8 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
+	private String description;
+	private String imageUrl;
 	
 	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)  
 	private Collection<Review> reviews;
@@ -24,13 +26,15 @@ public class Category {
 	private Category() {
 	}
 	
-	public Category(String title) {
-		this(title, Collections.emptyList());
+	public Category(String title, String description, String img) {
+		this(title, description, img, Collections.emptyList());
 	}
 	
-	public Category(String title, Collection<Review> reviews) {
+	public Category(String title, String description, String img, Collection<Review> reviews) {
 		this.title = title;
 		this.reviews = reviews;
+		this.description = description;
+		this.imageUrl = img;
 	}
 
 	public Collection<Review> getReviews() {
@@ -45,11 +49,12 @@ public class Category {
 		return id;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
 	
-	
-	
-//	@Override
-//	public String toString() {
-//		return "Review# " + reviewNumber;
-//	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
 }
