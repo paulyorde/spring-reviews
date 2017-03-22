@@ -28,11 +28,6 @@ public class Review {
 		this.category = category;
 	}
 	
-	@Override
-	public String toString() {
-		return String.format("Review[title='%s', content='%s', categories: %s]",  title, content,
-				category.getTitle());
-	}
 
 	public long getId() {
 		return id;
