@@ -1,4 +1,4 @@
-# Spring Boot Project
+# Spring Boot Project | MVC
 
 ### Technologies used
 - spring jpa, h2, thymeleaf
